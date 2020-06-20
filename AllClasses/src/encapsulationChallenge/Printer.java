@@ -1,7 +1,7 @@
 package encapsulationChallenge;
 
 public class Printer {
-	private int tonerLevel=100, printedPages = 0;
+	private int tonerLevel = 100, printedPages = 0;
 	private boolean isDuplex;
 
 	public Printer(int tonerLevel, int printedPages, boolean isDuplex) {
@@ -26,14 +26,14 @@ public class Printer {
 	}
 
 	public void print(int amount) {
-		int amountToPrint=amount;
-		if (isDuplex && tonerLevel-amount/4 > 0) {
+		int amountToPrint = amount;
+		if (isDuplex && tonerLevel - amount / 4 > 0) {
 			amountToPrint = (int) Math.ceil(amount / 2.0);
 		}
-		if (amount > 0 && tonerLevel-amount/4 > 0) {
+		if (amount > 0 && tonerLevel - amount / 4 > 0) {
 			printedPages += amountToPrint;
-			System.out.println("You have printed " + printedPages + " pages\nToner level:"+tonerLevel);
 			tonerLevel -= amount / 4;
+			System.out.println("You have printed " + printedPages + " pages\nToner level:" + tonerLevel);
 		} else {
 			System.out.println("Cannot print. Toner may not have enough ink to print all.");
 		}
