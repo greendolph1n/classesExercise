@@ -25,7 +25,7 @@ public class Lamp {
 			System.out.println("Lamp is on mode 3. It is so bright your eyes have been blinded.");
 			break;
 		default:
-			System.out.println("You tried to put the switch on "+onSettings+" But, it didn't have that mode so you got frustrated that threw the lamp out the window");
+			System.out.println("You tried to put the lamp on "+onSettings+" But, it didn't have that mode so you got so frustrated that you threw the lamp out the window");
 			break;
 		}
 		
