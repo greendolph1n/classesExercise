@@ -27,33 +27,28 @@ public class MobilePhone {
 			case 3:
 				scanner.nextLine();
 				System.out.println("Enter the name of the contact you'd like to add:");
-				String name = scanner.nextLine();
-				name=name.toUpperCase();
+				String name = scanner.nextLine().toUpperCase();
 				contact.addNew(name);
 				break;
 			case 4:
 				scanner.nextLine();
 				System.out.println("Which contact would you like to update?");
-				String replaceName = scanner.nextLine();
-				replaceName=replaceName.toUpperCase();
+				String replaceName = scanner.nextLine().toUpperCase();
 				System.out.println("What is the name of the new contact?");
-				name = scanner.nextLine();
-				name=name.toUpperCase();
+				name = scanner.nextLine().toUpperCase();
 				contact.update(replaceName, name);
 				break;
 			case 5:
 				scanner.nextLine();
 				System.out.println("What is the name of the contact you want to delete?");
-				name = scanner.nextLine();
-				name=name.toUpperCase();
+				name = scanner.nextLine().toUpperCase();
 				contact.removeContact(name);
 				break;
 
 			case 6:
 				scanner.nextLine();
 				System.out.println("Enter the name of the contact you'd like to search for:");
-				name = scanner.nextLine();
-				name=name.toUpperCase();
+				name = scanner.nextLine().toUpperCase();
 				if (contact.findContact(name)) {
 					System.out.println("Contact found\n");
 				} else {

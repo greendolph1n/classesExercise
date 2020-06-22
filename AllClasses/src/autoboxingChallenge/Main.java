@@ -6,7 +6,6 @@ public class Main {
 	static Scanner scanner = new Scanner(System.in);
 
 	public static void main(String[] args) {
-
 		Bank rbm = new Bank("RBM");
 		Bank td = new Bank("TD Bank");
 		Bank scotia = new Bank("ScotiaBank");
@@ -47,18 +46,16 @@ public class Main {
 				System.out.println();
 				break;
 			case 4:
-
 				showTransactions(findBranch(currentBank));
 				System.out.println();
-
 				break;
 			case 5:
 				checkBalance(currentBank, findBranch(currentBank));
 				System.out.println();
-
 			}
 
 		}
+		scanner.close();
 	}
 
 	public static void addBranch(Bank currentBank) {
@@ -68,7 +65,6 @@ public class Main {
 		Branch branch = new Branch(branchName);
 		currentBank.addBranch(branch);
 		System.out.println("Branch with name: " + branchName + " added.\nGoing back to MENU screen.");
-
 	}
 
 	public static void joinBranch(Bank currentBank) {
@@ -83,7 +79,6 @@ public class Main {
 		System.out.println("Deposit amount:");
 		double amount = scanner.nextInt();
 		currentBranch.addCustomer(new Customer(customerName, amount));
-
 	}
 
 	public static void addTransaction(Bank currentBank) {
@@ -102,13 +97,13 @@ public class Main {
 				System.out.println("Enter withdrawal amount:");
 				double amount = scanner.nextInt();
 				currentBranch.getCustomer(name).withdraw(amount);
-				System.out.println("Withdrawal of "+amount+" has been processed. Going back to MENU screen.");
+				System.out.println("Withdrawal of " + amount + " has been processed. Going back to MENU screen.");
 				break;
 			case 2:
 				System.out.println("Enter deposit amount:");
 				amount = scanner.nextInt();
 				currentBranch.getCustomer(name).deposit(amount);
-				System.out.println("Deposit of "+amount+" has been processed. Going back to MENU screen.");
+				System.out.println("Deposit of " + amount + " has been processed. Going back to MENU screen.");
 				break;
 			}
 		} else {
@@ -122,7 +117,6 @@ public class Main {
 		int choice = scanner.nextInt();
 		Branch currentBranch = currentBank.getBranches().get(choice - 1);
 		return currentBranch;
-
 	}
 
 	public static void showTransactions(Branch currentBranch) {
@@ -137,7 +131,6 @@ public class Main {
 		currentBranch.showCustomers();
 		int choice = scanner.nextInt();
 		currentBranch.getCustomers().get(choice - 1).checkBalance();
-
 	}
 
 }
