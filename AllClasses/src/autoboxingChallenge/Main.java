@@ -31,7 +31,7 @@ public class Main {
 			}
 			scanner.nextLine();
 			System.out.println(
-					"1.Add branch\n2.Join branch and add transaction\n3.Add transaction (for existing customers\n4.Show all customers\n5.Check balance");
+					"1.Add branch\n2.Join branch and deposit inital amount\n3.Perform transaction (for existing customers)\n4.Show transaction history\n5.Check balance");
 			choice = scanner.nextInt();
 			switch (choice) {
 			case 1:
@@ -126,7 +126,7 @@ public class Main {
 	}
 
 	public static void showTransactions(Branch currentBranch) {
-		System.out.println("\nSelect which customer transactions you would like to view.");
+		System.out.println("Select which customer transactions you would like to view.");
 		currentBranch.showCustomers();
 		int choice = scanner.nextInt();
 		currentBranch.getCustomers().get(choice - 1).printTransactions();
