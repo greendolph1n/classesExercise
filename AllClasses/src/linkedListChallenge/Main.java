@@ -3,15 +3,17 @@ package linkedListChallenge;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.ListIterator;
 import java.util.Scanner;
+import java.util.Vector;
 
 public class Main {
 
-	static ArrayList<Album> albumList = new ArrayList<Album>();
+	static List<Album> albumList = new ArrayList<Album>();
 	static Scanner scanner = new Scanner(System.in);
 
-	public static LinkedList<Song> addSong(LinkedList<Song> playlist) {
+	public static List<Song> addSong(List<Song> playlist) {
 		System.out.println("Choose an album:\n1.Howl's Moving Castle OST\n2.Spirited Away OST\n3.Ocean Waves OST");
 		int choice = scanner.nextInt();
 		Album currentAlbum = null;
@@ -39,7 +41,8 @@ public class Main {
 				break;
 			}
 			playlist.add(currentAlbum.getSongList().get(0));
-			System.out.println("---> Successfully added " + playlist.get(playlist.size()-1).getName() + " to your playlist\n");
+			System.out.println(
+					"---> Successfully added " + playlist.get(playlist.size() - 1).getName() + " to your playlist\n");
 			break;
 
 		case 2:
@@ -48,7 +51,8 @@ public class Main {
 				break;
 			}
 			playlist.add(currentAlbum.getSongList().get(1));
-			System.out.println("---> Successfully added " + playlist.get(playlist.size()-1).getName() + " to your playlist\n");
+			System.out.println(
+					"---> Successfully added " + playlist.get(playlist.size() - 1).getName() + " to your playlist\n");
 			break;
 		case 3:
 			if (playlist.contains(currentAlbum.getSongList().get(choice - 1))) {
@@ -56,7 +60,8 @@ public class Main {
 				break;
 			}
 			playlist.add(currentAlbum.getSongList().get(2));
-			System.out.println("---> Successfully added " + playlist.get(playlist.size()-1).getName() + " to your playlist\n");
+			System.out.println(
+					"---> Successfully added " + playlist.get(playlist.size() - 1).getName() + " to your playlist\n");
 			break;
 		case 4:
 			if (playlist.contains(currentAlbum.getSongList().get(choice - 1))) {
@@ -64,13 +69,14 @@ public class Main {
 				break;
 			}
 			playlist.add(currentAlbum.getSongList().get(3));
-			System.out.println("---> Successfully added " + playlist.get(playlist.size()-1).getName() + " to your playlist\n");
+			System.out.println(
+					"---> Successfully added " + playlist.get(playlist.size() - 1).getName() + " to your playlist\n");
 			break;
 		}
 		return playlist;
 	}
 
-	public static void playSong(LinkedList<Song> playlist) {
+	public static void playSong(List<Song> playlist) {
 		System.out.println("Choose a song to play:\n");
 		for (int i = 0; i < playlist.size(); i++) {
 			System.out.println(i + 1 + "." + playlist.get(i).getName() + " (" + playlist.get(i).getDuration() + ")");
@@ -97,35 +103,34 @@ public class Main {
 				break;
 
 			case 2:
-				indexVal++;
-				if (indexVal>playlist.size()) {
-					System.out.println("---> You have reached the end of the playlist.\n");
-					indexVal--;
-					break;
-				}
 				if (!goingForward) {
 					iterator.next();
 				}
-				
+
+				if (!iterator.hasNext()) {
+					System.out.println("---> You have reached the end of the playlist.\n");
+					break;
+				}
+
 				System.out.println("\n---> Playing next song --->" + iterator.next().getName() + " is now playing\n\n");
 				goingForward = true;
 				goingBackward = false;
-				break;
-			case 3:
-				indexVal--;
-				if(indexVal<=0) {
-					System.out.println("Already at the beginning of playlist. Cannot play previous song.\n");
 				indexVal++;
 				break;
-				}
+			case 3:
 				if (!goingBackward) {
 					iterator.previous();
 				}
-				
+				if (!iterator.hasPrevious()) {
+					System.out.println("Already at the beginning of playlist. Cannot play previous song.\n");
+					break;
+				}
+
 				System.out.println(
 						"\n---> Playing previous song --->" + iterator.previous().getName() + " is now playing\n\n");
 				goingBackward = true;
 				goingForward = false;
+				indexVal--;
 				break;
 			}
 		}
@@ -135,7 +140,7 @@ public class Main {
 		Album howlsCastle = new Album();
 		Album spiritedAway = new Album();
 		Album oceanWaves = new Album();
-		LinkedList<Song> playlist = new LinkedList<Song>();
+		List<Song> playlist = new ArrayList<Song>();
 
 		howlsCastle.getSongList().addAll(Arrays.asList(new Song("Merry Go Round of Life", "3:42"),
 				new Song("Heartbeat", "4:01"), new Song("Sophie in Exile", "3:03"), new Song("In the Rain", "4:36")));
@@ -168,7 +173,10 @@ public class Main {
 				break;
 
 			case 2:
-				System.out.println(playlist.size());
+				if (playlist.size() == 0) {
+					System.out.println("You haven't added any songs to your playlist");
+					break;
+				}
 				playSong(playlist);
 				System.out.println();
 
