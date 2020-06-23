@@ -3,6 +3,7 @@ package linkedListChallenge;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.ListIterator;
 import java.util.Scanner;
 
 public class Main {
@@ -30,36 +31,40 @@ public class Main {
 		System.out.println("\nChoose a song to add to your playlist");
 		scanner.nextLine();
 		choice = scanner.nextInt();
-		
+
 		switch (choice) {
 		case 1:
-			if(playlist.contains(currentAlbum.getSongList().get(choice-1))) {
+			if (playlist.contains(currentAlbum.getSongList().get(choice - 1))) {
 				System.out.println("You have already added that song\n");
 				break;
 			}
 			playlist.add(currentAlbum.getSongList().get(0));
+			System.out.println("---> Successfully added " + playlist.get(playlist.size()-1).getName() + " to your playlist\n");
 			break;
 
 		case 2:
-			if(playlist.contains(currentAlbum.getSongList().get(choice-1))) {
+			if (playlist.contains(currentAlbum.getSongList().get(choice - 1))) {
 				System.out.println("You have already added that song\n");
 				break;
 			}
 			playlist.add(currentAlbum.getSongList().get(1));
+			System.out.println("---> Successfully added " + playlist.get(playlist.size()-1).getName() + " to your playlist\n");
 			break;
 		case 3:
-			if(playlist.contains(currentAlbum.getSongList().get(choice-1))) {
+			if (playlist.contains(currentAlbum.getSongList().get(choice - 1))) {
 				System.out.println("You have already added that song\n");
 				break;
 			}
 			playlist.add(currentAlbum.getSongList().get(2));
+			System.out.println("---> Successfully added " + playlist.get(playlist.size()-1).getName() + " to your playlist\n");
 			break;
 		case 4:
-			if(playlist.contains(currentAlbum.getSongList().get(choice-1))) {
+			if (playlist.contains(currentAlbum.getSongList().get(choice - 1))) {
 				System.out.println("You have already added that song\n");
 				break;
 			}
 			playlist.add(currentAlbum.getSongList().get(3));
+			System.out.println("---> Successfully added " + playlist.get(playlist.size()-1).getName() + " to your playlist\n");
 			break;
 		}
 		return playlist;
@@ -67,20 +72,70 @@ public class Main {
 
 	public static void playSong(LinkedList<Song> playlist) {
 		System.out.println("Choose a song to play:\n");
-		for (int i =0;i<playlist.size();i++) {
-			System.out.println(i+1+"."+playlist.get(i).getName()+" ("+playlist.get(i).getDuration()+")");
+		for (int i = 0; i < playlist.size(); i++) {
+			System.out.println(i + 1 + "." + playlist.get(i).getName() + " (" + playlist.get(i).getDuration() + ")");
 		}
-		int choice=scanner.nextInt();
-		System.out.println("--->"+playlist.get(choice).getName()+" is now playing\n\n");
-		System.out.println("Would you like to\n1.Replay the song\n2.Play the next song\n3.Play the previous song");
-		
+		int indexVal = scanner.nextInt();
+		ListIterator<Song> iterator = playlist.listIterator();
+		System.out.println("--->" + playlist.get(indexVal - 1).getName() + " is now playing\n\n");
+		for (int i = 0; i < indexVal; i++) {
+			iterator.next();
+		}
+		boolean goingForward = true, goingBackward = false;
+		while (true) {
+			System.out.println(
+					"Would you like to\n1.Replay the current song\n2.Play the next song\n3.Play the previous song\n**ENTER 0 TO QUIT**");
+			int choice = scanner.nextInt();
+			if (choice == 0) {
+				break;
+			}
+
+			switch (choice) {
+			case 1:
+				System.out.println(
+						"\n---> Song replayed --->" + playlist.get(indexVal - 1).getName() + " is now playing\n\n");
+				break;
+
+			case 2:
+				indexVal++;
+				if (indexVal>playlist.size()) {
+					System.out.println("---> You have reached the end of the playlist.\n");
+					indexVal--;
+					break;
+				}
+				if (!goingForward) {
+					iterator.next();
+				}
+				
+				System.out.println("\n---> Playing next song --->" + iterator.next().getName() + " is now playing\n\n");
+				goingForward = true;
+				goingBackward = false;
+				break;
+			case 3:
+				indexVal--;
+				if(indexVal<=0) {
+					System.out.println("Already at the beginning of playlist. Cannot play previous song.\n");
+				indexVal++;
+				break;
+				}
+				if (!goingBackward) {
+					iterator.previous();
+				}
+				
+				System.out.println(
+						"\n---> Playing previous song --->" + iterator.previous().getName() + " is now playing\n\n");
+				goingBackward = true;
+				goingForward = false;
+				break;
+			}
+		}
 	}
 
 	public static void main(String[] args) {
 		Album howlsCastle = new Album();
 		Album spiritedAway = new Album();
 		Album oceanWaves = new Album();
-		LinkedList<Song> playlist= new LinkedList<Song>();
+		LinkedList<Song> playlist = new LinkedList<Song>();
 
 		howlsCastle.getSongList().addAll(Arrays.asList(new Song("Merry Go Round of Life", "3:42"),
 				new Song("Heartbeat", "4:01"), new Song("Sophie in Exile", "3:03"), new Song("In the Rain", "4:36")));
@@ -100,7 +155,8 @@ public class Main {
 
 		while (true) {
 
-			System.out.println("1.Add song to your playlist\n2.Play music from your playlist\n\nPRESS 0 TO QUIT");
+			System.out.println(
+					"\n***1.Add song to your playlist\n***2.Play music from your playlist\n\nPRESS 0 TO QUIT***");
 			int choice = scanner.nextInt();
 
 			if (choice == 0) {
@@ -108,13 +164,13 @@ public class Main {
 			}
 			switch (choice) {
 			case 1:
-				 playlist = addSong(playlist);
+				playlist = addSong(playlist);
 				break;
 
 			case 2:
 				System.out.println(playlist.size());
-				 playSong(playlist);
-				 System.out.println();
+				playSong(playlist);
+				System.out.println();
 
 			}
 		}
