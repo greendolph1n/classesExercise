@@ -2,11 +2,10 @@ package linkedListChallenge;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Scanner;
-import java.util.Vector;
+
 
 public class Main {
 
@@ -33,7 +32,6 @@ public class Main {
 		System.out.println("\nChoose a song to add to your playlist");
 		scanner.nextLine();
 		choice = scanner.nextInt();
-
 		switch (choice) {
 		case 1:
 			if (playlist.contains(currentAlbum.getSongList().get(choice - 1))) {
@@ -95,23 +93,19 @@ public class Main {
 			if (choice == 0) {
 				break;
 			}
-
 			switch (choice) {
 			case 1:
 				System.out.println(
 						"\n---> Song replayed --->" + playlist.get(indexVal - 1).getName() + " is now playing\n\n");
 				break;
-
 			case 2:
 				if (!goingForward) {
 					iterator.next();
 				}
-
 				if (!iterator.hasNext()) {
 					System.out.println("---> You have reached the end of the playlist.\n");
 					break;
 				}
-
 				System.out.println("\n---> Playing next song --->" + iterator.next().getName() + " is now playing\n\n");
 				goingForward = true;
 				goingBackward = false;
@@ -125,7 +119,6 @@ public class Main {
 					System.out.println("Already at the beginning of playlist. Cannot play previous song.\n");
 					break;
 				}
-
 				System.out.println(
 						"\n---> Playing previous song --->" + iterator.previous().getName() + " is now playing\n\n");
 				goingBackward = true;
@@ -157,13 +150,11 @@ public class Main {
 
 		System.out.println("Welcome to Derek's playlist maker. Here you're given the honor of making a playlist out of"
 				+ "his best picks from his favourite movies of studio: Studio Ghibli\n");
-
 		while (true) {
 
 			System.out.println(
 					"\n***1.Add song to your playlist\n***2.Play music from your playlist\n\nPRESS 0 TO QUIT***");
 			int choice = scanner.nextInt();
-
 			if (choice == 0) {
 				break;
 			}
@@ -171,7 +162,6 @@ public class Main {
 			case 1:
 				playlist = addSong(playlist);
 				break;
-
 			case 2:
 				if (playlist.size() == 0) {
 					System.out.println("You haven't added any songs to your playlist");
@@ -179,7 +169,6 @@ public class Main {
 				}
 				playSong(playlist);
 				System.out.println();
-
 			}
 		}
 	}
