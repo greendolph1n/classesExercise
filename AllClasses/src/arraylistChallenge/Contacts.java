@@ -13,6 +13,7 @@ public class Contacts {
 	public ArrayList<String> getContactList() {
 		return contactList;
 	}
+	
 
 	public void addNew(String name) {
 		if (findContact(name) != true) {
