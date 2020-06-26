@@ -91,5 +91,4 @@ public class myLinkedList implements NodeList {
 		 * }
 		 */
 	}
-
 }
