@@ -4,7 +4,7 @@ public class myLinkedList implements NodeList {
 	private ListItem root = null;
 
 	public myLinkedList(ListItem root) {
-		this.root = root;
+		this.root = root; 
 	}
 
 	@Override
