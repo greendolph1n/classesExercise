@@ -7,9 +7,9 @@ public class Main {
 	public static void main(String[] args) {
 		
 		BasketballTeam raptors = new BasketballTeam("Raptors",100);
-		BasketballTeam test2 = new BasketballTeam("test2",90);
-		BasketballTeam test3 = new BasketballTeam("test3",950);
-		BasketballTeam test4 = new BasketballTeam("test4",1);
+		BasketballTeam test2 = new BasketballTeam("test2",12456965);
+		BasketballTeam test3 = new BasketballTeam("test3",3220);
+		BasketballTeam test4 = new BasketballTeam("test4",1002220);
 		BasketballTeam test5 = new BasketballTeam("test5",1010);
 		SoccerTeam madrid=new SoccerTeam("Madrid",12);
 		

@@ -18,8 +18,7 @@ public class LeagueTable<T extends Team> {
 		while (true) {
 			if (current.getScore() > Team.getScore()) {
 				if (current.next() == null) {
-					current.setNext(Team);
-					Team.setPrevious(current);
+					current.setNext(Team).setPrevious(current);
 					mainList.add(Team);
 					System.out.println(Team.getTeamName() + " has been added.");
 					return true;
@@ -28,22 +27,29 @@ public class LeagueTable<T extends Team> {
 			}
 
 			else {
-				if (current.next() == null) {
-					current.previous().setNext(Team);
-					Team.setNext(current);
+				if(current==this.root) {
+				
+					if(current.next()==null) {
+					Team.setNext(current).setPrevious(Team);
+					System.out.println(Team.getTeamName() + " has been added.");
+					System.out.println("root is now "+Team.getTeamName());
+					this.root = Team;
 					mainList.add(Team);
 					return true;
-				} else if (current.previous() == null) {
-					this.root = Team;
-					Team.setNext(current);
-					current.setPrevious(Team);
+					}
+					Team.setNext(current).setPrevious(Team);
+					this.root=Team;
 					mainList.add(Team);
 					System.out.println(Team.getTeamName() + " has been added.");
+					
 					return true;
 				}
-				current.previous().setNext(Team);
-				Team.setNext(current);
+				System.out.println("replacing "+current.getTeamName()+" with "+Team.getTeamName());
+				current.previous().setNext(Team).setNext(current);
+				current.setPrevious(Team);
+				//Team.setPrevious(current.previous());
 				System.out.println(Team.getTeamName() + " has been added.");
+				System.out.println(current.previous().getTeamName());
 				mainList.add(Team);
 				return true;
 			}
@@ -64,10 +70,6 @@ public class LeagueTable<T extends Team> {
 			current = current.next();
 
 		}
-		System.out.println("\n\n");
-
-		for (Team t : mainList) {
-			System.out.println(t.getTeamName());
-		}
 	}
 }
+
