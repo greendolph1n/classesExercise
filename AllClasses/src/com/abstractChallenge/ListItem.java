@@ -1,4 +1,4 @@
-package abstractChallenge;
+package com.abstractChallenge;
 
 public abstract class ListItem {
 

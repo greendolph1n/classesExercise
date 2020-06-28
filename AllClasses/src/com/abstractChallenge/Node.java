@@ -1,4 +1,4 @@
-package abstractChallenge;
+package com.abstractChallenge;
 
 public class Node extends ListItem {
 	public Node(Object value) {

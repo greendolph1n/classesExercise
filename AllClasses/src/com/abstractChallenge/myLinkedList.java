@@ -1,4 +1,4 @@
-package abstractChallenge;
+package com.abstractChallenge;
 
 public class myLinkedList implements NodeList {
 	private ListItem root = null;
