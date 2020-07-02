@@ -1,4 +1,4 @@
-package com.allClasses;
+package com.classExercises;
 
 public class Cuboid extends Rectangle {
 	private double height;

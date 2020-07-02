@@ -1,4 +1,4 @@
-package com.allClasses;
+package com.classExercises;
 
 public class Person {
 	private String firstName;
