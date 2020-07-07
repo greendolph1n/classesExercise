@@ -22,6 +22,8 @@ public class Team {
 		return this.nextTeam;
 		
 	}
+
+
 	public Team setPrevious(Team team) {
 		this.prevTeam=team;
 		return this.prevTeam;
@@ -32,5 +34,6 @@ public class Team {
 	public Team previous() {
 		return this.prevTeam;
 	}
+
 
 }
